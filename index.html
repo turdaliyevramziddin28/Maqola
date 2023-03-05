@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.min.css">
-    <title>Document</title>
+    <title>Get_post</title>
 </head>
 <body class="bg-secondary">
     <!-- container qismi boshlandi -->
@@ -70,11 +70,11 @@
                   </div>
                   <!-- menu qatori tugadi -->
 
-                  
                   <div class="col-sm-8 col-lg-9 mt-2 mt-sm-0">
                     <!-- cardlar ro'yxati boshlandi -->
 
                     <div class="row row_cardlar row-gap-4">
+
                     </div>
                         
                     <!-- cardlar ro'yxati tugadi -->
@@ -119,10 +119,8 @@
         fetch("https://getty.uz/get-posts")
         .then(response => response.json())
         .then(javob => {
-            // console.log(javob);
-            for(maqolalar of javob.data){
 
-                console.log(maqolalar);
+            for(maqolalar of javob.data){
 
                 var row_div = document.querySelector(".row_cardlar");
 
@@ -131,11 +129,10 @@
                 col_div.classList.add("d-flex");
                 col_div.classList.add("justify-content-center");
 
-
                 var card = document.createElement("div");
                 card.classList.add("card");
                 card.style.width = "18rem";
-                card.style.height = "350px";
+                card.style.height = "400px";
                 
                 var img = document.createElement('img');
                 img.alt = "...";
@@ -154,8 +151,9 @@
 
                 var card_text = document.createElement('p');
                 card_text.classList.add("card-text");
-                card_text.style.height = "43%";
-                card_text.classList.add("mb-0");
+                card_text.style.height = "35%";
+                card_text.style.overflow = "scroll";
+                card_text.style.marginBottom = "12px";
 
                 card_body.appendChild(card_text);
 
@@ -174,7 +172,6 @@
                 a_edit.style.marginLeft = "25px";
                 a_edit.href = "edit_post.html?id=" + maqolalar.id;
                 
-                
                 card_body.appendChild(a);
                 card_body.appendChild(a_edit);
 
@@ -187,14 +184,9 @@
                 row_div.appendChild(col_div);
             }
             
-        })
-
-        // console.log(window.location.href);
-  
-        
+        });
 
     </script>
-
 
 </body>
 </html>
