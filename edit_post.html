@@ -173,6 +173,11 @@
             .then(javoblar => javoblar.json())
             .then(javoblar => {
                 console.log(javoblar);
+                if(javoblar.data == "The post has been updated!"){
+                    alert("Maqola o'zgartirildi");
+                } else{
+                    alert("Maqola o'zgartirilmadi! Iltimos qaytadan urinib ko'ring")
+                }
             })
         }
 
