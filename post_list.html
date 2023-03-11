@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.min.css">
-    <title>Get_post</title>
+    <title>Maqolalar ro'yxati</title>
 </head>
 <body class="bg-secondary">
     <!-- container qismi boshlandi -->
@@ -115,20 +115,18 @@
     <script>
 
         
-
         fetch("https://getty.uz/get-posts")
         .then(response => response.json())
         .then(javob => {
-
             for(maqolalar of javob.data){
-
+                
                 var row_div = document.querySelector(".row_cardlar");
 
                 var col_div = document.createElement("div");
                 col_div.classList.add("col");
                 col_div.classList.add("d-flex");
                 col_div.classList.add("justify-content-center");
-
+ 
                 var card = document.createElement("div");
                 card.classList.add("card");
                 card.style.width = "18rem";
@@ -161,8 +159,28 @@
                 a.classList.add("btn");
                 a.classList.add("btn-primary");
                 a.classList.add("read_more")
-                a.innerText = "Read more";
+                a.innerText = "Delete";
                 a.style.width = "45%";
+
+                a.addEventListener("click", function(){
+               
+                    var id_cod = this.nextSibling.href.split("=")[1];
+
+                    var form2 = new FormData();
+                    form2.append("id", id_cod);
+                    
+                    fetch("https://getty.uz/delete-post", {
+                        method: "post",
+                        body: form2
+                    })
+                    .then(response_delete => response_delete.json())
+                    .then(response_delete => {
+                        if (response_delete.data == "The post has been deleted!"){
+                            alert("Maqola o'chirildi!");
+                        }
+                    })
+
+                })
 
                 var a_edit = document.createElement("a");
                 a_edit.innerText = "Edit";
